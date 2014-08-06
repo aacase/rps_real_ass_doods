@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Title</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    <!--   <div align="center">
+        <h2>Sign up!</h2>
+        <form action='/signup' method='post'>
+          <input type='text' name='username' placeholder='Username'><br>
+          <input type='password' name='password' placeholder='Password'><br />
+          <input type='password' name='confirmpassword' placeholder='Confirm Password'><br />
+          <input type='submit' value='Submit'>
+        </form>
+      </div> -->
+      <form action='/signup' method='post'>
+          <div>
+              <span class="label">User Name</span>
+              <input type="text" class="userid" name="username" placeholder='username'/>
+          </div>
+          <div>
+              <span class="label">Password</span>
+              <input type="password"  placeholder='password'class="password" name="password" />
+          </div>
+          <div>
+              <span class="label">Confirm Password</span>
+              <input type="password" class="confpass"name="confpass" placeholder='confirm password' />
+          </div>
+          <input id="submit" type="submit" value="Submit">
+      </form>
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js'>
+      </script>
+       <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js'>
+      </script>
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'>
+      </script>
+	<script type="text/javascript">
+      $('#submit').click(function(event){
+    
+        data = $('.password').val();
+        var len = data.length;
+        
+        if(len < 1) {
+            alert("Password cannot be blank");
+            // Prevent form submission
+            event.preventDefault();
+        }
+         
+        if($('.password').val() != $('.confpass').val()) {
+            alert("Password and Confirm Password don't match");
+            // Prevent form submission
+            event.preventDefault();
+        }
+         
+    });</script>
+
+     
+    </body>
+</html>
