@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,15 +15,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-          	<form action="/auth/login" method="post" class="navbar-form navbar-left">
-        		<div class="form-group">
-          	<input type="text" class="form-control" placeholder="Username" name="user[username]">
-        		</div>
-        		<div class="form-group">
-          	<input type="password" class="form-control" placeholder="Password" name="user[password]">
-        		</div>
-        	<button type="submit" class="btn btn-default">Submit</button>
-      		</form>
+          <% if !@yes %>
+                  <form action="/auth/logout" method="post" class="navbar-form navbar-left">
+                  <button type="signout" class="btn btn-default">Rules</button>
+                  <button type="signout" class="btn btn-default">Sign Out</button>
+                </form>
+          <% else %>
+              	<form action="/auth/login" method="post" class="navbar-form navbar-left">
+            		<div class="form-group">
+              	<input type="text" class="form-control" placeholder="Username" name="user[username]">
+            		</div>
+            		<div class="form-group">
+              	<input type="password" class="form-control" placeholder="Password" name="user[password]">
+            		</div>
+              	<button type="submit" class="btn btn-default">Submit</button>
+            		</form>
+          <% end %>
           </ul>
         </li>
       </ul>
