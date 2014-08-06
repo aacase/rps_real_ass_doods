@@ -7,8 +7,8 @@ class User
 
   property :id, Serial, key: true
   property :username, String, length: 128
-
   property :password, BCryptHash
+  property :match_wins, Integer
 
   def authenticate(attempted_password)
     if self.password == attempted_password
@@ -17,6 +17,25 @@ class User
       false
     end
   end
+end
+
+class Match
+  include DataMapper::Resource
+
+  property :id, Serial, key:true 
+  property :user1, Integer
+  property :user2, Integer
+  property :pending, Boolean :default => true
+
+end
+
+class Game
+  include DataMapper::Resource
+
+  property :id, Serial, key:true
+  property :match_id, Integer
+  property :user1_choice, String, length: 20
+  property :user2_choice, String, length: 20
 end
 
 # Tell DataMapper the models are done being defined
