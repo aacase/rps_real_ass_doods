@@ -61,7 +61,7 @@ class SinatraWardenExample < Sinatra::Base
   end
 
   post '/signup' do
-    puts params
+    
     @newu = params['username']
     @newpass=params['password']
     @user = User.create(username: @newu)
@@ -76,12 +76,13 @@ class SinatraWardenExample < Sinatra::Base
 
   post '/auth/login' do
     env['warden'].authenticate!
-
+    @currentuser=session["warden.user.default.key"]
+    
     flash[:success] = env['warden'].message
 
     if session[:return_to].nil?
-      @sesh=true
-      redirect '/protected'
+      # binding.pry
+      redirect "/userview/#{@currentuser}"
     else
       redirect session[:return_to]
     end
@@ -89,11 +90,16 @@ class SinatraWardenExample < Sinatra::Base
 
   get '/auth/logout' do
     env['warden'].raw_session.inspect
-    @sesh=false
+   
     env['warden'].logout
     
     flash[:success] = 'Successfully logged out'
     # redirect '/'
+  end
+
+  get '/userview/:id' do
+    params[:user]
+    erb :userview
   end
 
   post '/auth/unauthenticated' do

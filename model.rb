@@ -19,13 +19,15 @@ class User
   end
 end
 
+# user = User.get(:username => )
+
 class Match
   include DataMapper::Resource
 
   property :id, Serial, key:true 
   property :user1, Integer
   property :user2, Integer
-  property :pending, Boolean :default => true
+  # property :pending, Boolean :default => true
 
 end
 

@@ -1,0 +1,49 @@
+<div id="responsive" class="modal hide fade" tabindex="-1" data-width="760">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Responsive</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row-fluid">
+    
+        
+      <div class="span6">
+       <form action='/signup' method='post'>
+          <div>
+            <span class="label">User Name</span>
+               <input type="text" class="userid" name="username" placeholder='username'/>
+           </div>
+           <div>            
+             <input type="password"  placeholder='password'class="password" name="password" />
+           </div>
+           <div>             
+             <input type="password" class="confpass"name="confpass" placeholder='confirm password' />
+           </div>
+           <input id="submit" type="submit" value="Submit">
+       </form>
+         
+        <script type="text/javascript">
+             $('#submit').click(function(event){
+           
+               data = $('.password').val();
+               var len = data.length;
+               
+               if(len < 1) {
+                   alert("Password cannot be blank");
+                   // Prevent form submission
+                   event.preventDefault();
+               }
+                
+               if($('.password').val() != $('.confpass').val()) {
+                   alert("Password and Confirm Password don't match");
+                   // Prevent form submission
+                   event.preventDefault();
+               }
+                
+           });
+        </script>
+
+      </div>
+    </div>
+  </div>
+</div>
