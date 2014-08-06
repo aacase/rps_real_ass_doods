@@ -80,7 +80,7 @@ class SinatraWardenExample < Sinatra::Base
     flash[:success] = env['warden'].message
 
     if session[:return_to].nil?
-      redirect '/'
+      redirect '/protected'
     else
       redirect session[:return_to]
     end
