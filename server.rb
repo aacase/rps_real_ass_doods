@@ -80,8 +80,8 @@ class SinatraWardenExample < Sinatra::Base
     flash[:success] = env['warden'].message
 
     if session[:return_to].nil?
+      @sesh=true
       redirect '/protected'
-      @yes = true
     else
       redirect session[:return_to]
     end
@@ -89,10 +89,11 @@ class SinatraWardenExample < Sinatra::Base
 
   get '/auth/logout' do
     env['warden'].raw_session.inspect
+    @sesh=false
     env['warden'].logout
-    @yes = false
+    
     flash[:success] = 'Successfully logged out'
-    redirect '/'
+    # redirect '/'
   end
 
   post '/auth/unauthenticated' do
