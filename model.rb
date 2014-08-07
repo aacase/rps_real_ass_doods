@@ -55,8 +55,13 @@ end
 
 if Match.count == 0
   @match = Match.create(user1: 4, user2: 9)
+  @game=Game.create(match_id: @match.id, user1_choice: "rock", user2_choice: "scissors")
+  
+  @game.save
   # @match.user1=4
   # @match.user2=9
   # # binding.pry
   # @match.save
 end
+
+
