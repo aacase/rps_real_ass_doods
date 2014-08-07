@@ -52,3 +52,11 @@ if User.count == 0
   @user.password = "aaron"
   @user.save
 end
+
+if Match.count == 0
+  @match = Match.create(user1: 4, user2: 9)
+  # @match.user1=4
+  # @match.user2=9
+  # # binding.pry
+  # @match.save
+end
