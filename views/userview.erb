@@ -7,17 +7,36 @@
 	<div class = "panel panel-default">
 	<div class = "panel-heading text-center">Current Active Games</div>	
 	<table class ="table">
-		<th>Opponent Name</th>
-		<th></th>
+		<tr>
+			<th>Opponent Name</th>
+			<th>History</th>
+			<th>Actions</th>
+		</tr>	
+		<% @active_matches.each do |x| %>
+			<tr>
+				<td><%= User.get(x.user2).username.capitalize %></td>
+				<td><%= x.winner %></td>
+				<td><%= x.winner %></td>
+			</tr>
+		<% end %>
+		<% @active_matches2.each do |x| %>
+			<tr>
+				<td><%= User.get(x.user1).username.capitalize %></td>
+				<td><%= x.winner %></td>
+				<td><%= x.winner %></td>
+			</tr>
+		<% end %>
 	</table>
 	</div>
 
 	<div class = "panel panel-default">
 	<div class = "panel-heading text-center"> Completed Games</div>		
 	<table class ="table">
-		<h3>Completed Games</h3>
-		<th>Opponent Name</th>
-		<th></th>
+		<tr>
+			<th>Opponent Name</th>
+			<th>History</th>
+			<th>Actions</th>
+		</tr>	
 	</table>
 	</div>
 

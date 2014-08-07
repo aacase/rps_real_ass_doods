@@ -28,6 +28,7 @@ class Match
   property :id, Serial, key:true 
   property :user1, Integer
   property :user2, Integer
+  property :winner, String, length: 20
   # property :pending, Boolean :default => true
 
   # def self.deny(match)
@@ -40,6 +41,7 @@ class Match
 
   #   match.destroy
   # end
+
 
 
 end

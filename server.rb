@@ -82,7 +82,6 @@ class SinatraWardenExample < Sinatra::Base
 
     if session[:return_to].nil?
 
-      
       redirect "/userview/#{@currentuser}"
     else
       redirect session[:return_to]
@@ -101,6 +100,9 @@ class SinatraWardenExample < Sinatra::Base
   get '/userview/:id' do
 
     if session["warden.user.default.key"]==params["id"].to_i
+      @active_matches = Match.all(:user1=> params["id"].to_i, :winner =>"0" )#get active matches
+      @active_matches2 = Match.all(:user2=> params["id"].to_i, :winner =>"0" )#get active matches
+      # @completed_matches = Match.get() #get completed matches
       erb :userview
     else 
       redirect '/'

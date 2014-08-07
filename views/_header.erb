@@ -16,9 +16,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
           <% if env['warden'].authenticated?   %>
-            <button type="challenge" class="btn btn-default">Challenge!</button> 
-            <button type="rules" class="btn btn-default">Rules</button>
                 <form action="/auth/logout" method="get" class="navbar-form navbar-left">
+                  <button type="challenge" class="btn btn-default">Challenge!</button> 
+                  <button type="rules" class="btn btn-default">Rules</button>
                   <button type="signout" class="btn btn-default">Sign Out</button>       
                 </form>
           <% else %>
