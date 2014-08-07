@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'RPS'
 DataMapper.setup(:default, "sqlite://#{Dir.pwd}/db.sqlite")
 
 class User
@@ -29,6 +30,18 @@ class Match
   property :user2, Integer
   # property :pending, Boolean :default => true
 
+  # def self.deny(match)
+
+  #    = Match.get(match_id: match.id)
+  #   binding.pry
+   
+  #   games.destroy
+  #   binding.pry
+
+  #   match.destroy
+  # end
+
+
 end
 
 class Game
@@ -55,14 +68,22 @@ end
 
 if Match.count == 0
   @match = Match.create(user1: 4, user2: 9)
+  @match2= Match.create(user1: 5, user2: 10)
+  @match2= Match.create(user1: 12 , user2: 13)
   @game=Game.create(match_id: @match.id, user1_choice: "rock", user2_choice: "scissors")
   
   
   @game.save
+
+
+
   # @match.user1=4
   # @match.user2=9
   # # binding.pry
   # @match.save
 end
+
+
+
 
 

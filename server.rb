@@ -81,7 +81,8 @@ class SinatraWardenExample < Sinatra::Base
     flash[:success] = env['warden'].message
 
     if session[:return_to].nil?
-      # binding.pry
+
+      
       redirect "/userview/#{@currentuser}"
     else
       redirect session[:return_to]
