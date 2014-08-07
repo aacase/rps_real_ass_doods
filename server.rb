@@ -98,9 +98,13 @@ class SinatraWardenExample < Sinatra::Base
   end
 
   get '/userview/:id' do
-    params[:user]
+
+    if session["warden.user.default.key"]==params["id"].to_i
+      erb :userview
+    else 
+      redirect '/'
+    end
     
-    erb :userview
   end
 
   post '/auth/unauthenticated' do
