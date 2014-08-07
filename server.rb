@@ -99,6 +99,7 @@ class SinatraWardenExample < Sinatra::Base
 
   get '/userview/:id' do
     params[:user]
+    
     erb :userview
   end
 

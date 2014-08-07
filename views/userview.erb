@@ -1,6 +1,8 @@
 
 <div class="container">
-<h2>Welcome <%= params[:id] %>!</h2> 
+<h2>Welcome <%= User.get(params[:id]).username  %>!</h2> 
+ 
+ 
 <!-- search sql db to query name by user id. -->
 	<div class = "panel panel-default">
 	<div class = "panel-heading text-center">Current Active Games</div>	
