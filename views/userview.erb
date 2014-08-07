@@ -9,21 +9,36 @@
 	<table class ="table">
 		<tr>
 			<th>Opponent Name</th>
-			<th>History</th>
-			<th>Actions</th>
+			<th>Choice History</th>
+			<th>Games Won</th>
+			<th class ="pull-right" style ="padding-right: 50px;">Actions</th>
 		</tr>	
 		<% @active_matches.each do |x| %>
 			<tr>
 				<td><%= User.get(x.user2).username.capitalize %></td>
 				<td><%= x.winner %></td>
-				<td><%= x.winner %></td>
+				<td></td>
+				<td>
+					<div class="btn-group pull-right">
+					  <button type="button" class="btn btn-default">Rock</button>
+					  <button type="button" class="btn btn-default">Papar</button>
+					  <button type="button" class="btn btn-default">Slizers</button>
+					</div>
+				</td>
 			</tr>
 		<% end %>
 		<% @active_matches2.each do |x| %>
 			<tr>
 				<td><%= User.get(x.user1).username.capitalize %></td>
 				<td><%= x.winner %></td>
-				<td><%= x.winner %></td>
+				<td></td>
+				<td>
+					<div class="btn-group pull-right">
+					  <button type="button" class="btn btn-default">Rock</button>
+					  <button type="button" class="btn btn-default">Papar</button>
+					  <button type="button" class="btn btn-default">Slizers</button>
+					</div>
+				</td>
 			</tr>
 		<% end %>
 	</table>
