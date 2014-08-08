@@ -102,7 +102,10 @@ class SinatraWardenExample < Sinatra::Base
     if session["warden.user.default.key"]==params["id"].to_i
       @active_matches = Match.all(:user1=> params["id"].to_i, :winner =>"0" )#get active matches
       @active_matches2 = Match.all(:user2=> params["id"].to_i, :winner =>"0" )#get active matches
-      # @completed_matches = Match.get() #get completed matches
+      @completed_matches = Match.all(:user1=> params["id"].to_i, :winner =>"1") #get completed matches
+      @completed_matches2 = Match.all(:user2=> params["id"].to_i, :winner =>"1") #get completed matches
+      # binding.pry
+
       erb :userview
     else 
       redirect '/'
@@ -121,6 +124,32 @@ class SinatraWardenExample < Sinatra::Base
   get '/protected' do
     env['warden'].authenticate!
 
+
     erb :protected
   end
+
+  get "/auth/challenge" do 
+    env['warden'].raw_session.inspect
+    erb :challenge
+  end
+
+  post "/auth/rock_submit_primary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user1=> session["warden.user.default.key"])
+    binding.pry
+    #how do we get the user 2 id here?
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "rock", user2_choice:"null for now")
+    
+    erb :index
+
+  end
+
+
+
+
+
+
+
+
 end

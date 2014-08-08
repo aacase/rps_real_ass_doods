@@ -34,7 +34,9 @@
 				<td></td>
 				<td>
 					<div class="btn-group pull-right">
-					  <button type="button" class="btn btn-default">The Rock</button>
+					<form action='/auth/rock_submit_primary' method='post'>
+					  <button type="submit"  class="btn btn-default">The Rock</button>
+					</form>
 					  <button type="button" class="btn btn-default">Papar</button>
 					  <button type="button" class="btn btn-default">Slizers</button>
 					</div>
@@ -50,8 +52,24 @@
 		<tr>
 			<th>Opponent Name</th>
 			<th>History</th>
-			<th>Actions</th>
-		</tr>	
+			
+		</tr>
+		<% @completed_matches.each do |x| %>
+			<tr>
+				<td><%= User.get(x.user2).username.capitalize %></td>
+				<td><%= x.winner %></td>
+				<td></td>
+				
+			</tr>
+		<% end %>
+		<% @completed_matches2.each do |x| %>
+			<tr>
+				<td><%= User.get(x.user2).username.capitalize %></td>
+				<td><%= x.winner %></td>
+				<td></td>
+				
+			</tr>
+		<% end %>	
 	</table>
 	</div>
 

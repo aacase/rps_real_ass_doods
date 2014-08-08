@@ -1,15 +1,14 @@
-<div>
+<div class = "container">
 	<div>
 		<h2>Play a Friend</h2>
 		<form>
-			<p>Enter a Username: <input type="text" name="user[username]" /></p>
-			<% if @user_exists %>
-				<div class="alert alert-success" role="alert">you have just challenged a user. Pending Acceptance</div>
-			<% else	%>
-				<div class="alert alert-danger" role="alert">Username does not exist. womp womp</div>
-			<% end %>
+			<p>Enter a Username: <input type="text" name="user[username]"/><button type="challenge" class=" typed btn btn-default">GO!</button></p>
 		</form>	
 	</div>
+		<div>
+			<h2>Play a Rando</h2>
+			<form><button type="challenge" class="btn btn-default">GO!</button> </form>
+		</div>
 
 	<div>
 		<h2>Active strangers to challenge</h2>
@@ -17,3 +16,13 @@
 	</div>
 
 </div>
+
+<script>
+	$(".typed").on('click', function(e){
+			<% if @user_exists %>
+				<div class="alert alert-success" role="alert">you have just challenged a user. Pending Acceptance</div>
+			<% else	%>
+				<div class="alert alert-danger" role="alert">Username does not exist. womp womp</div>
+			<% end %>
+	});
+</script>
