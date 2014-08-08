@@ -68,9 +68,9 @@ class Match
 
   end
 
-  def self.update_user_wins(match)
-    match.
-  end
+  # def self.update_user_wins(match)
+  #   match.
+  # end
 
 end
 
@@ -92,6 +92,15 @@ class Game
       games.last
     else
       nil
+    end
+  end
+
+  def self.user1_played?(match)
+    games = Game.all(:match_id => match.id)
+    if games.last.user1_choice != nil
+      true
+    else
+      false
     end
   end
 
@@ -125,7 +134,7 @@ class Game
       user2_wins = match.get(:user2_wins).to_i + 1
       match.update(:user2_wins => user2_wins.to_s)
     else
-
+      match.update(:user1_choice => nil, :user2_choice => nil)
     end
 
   end
