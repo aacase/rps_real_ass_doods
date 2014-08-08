@@ -19,17 +19,38 @@
 				<td><%= x.winner %></td>
 				<td></td>
 				<td>
-					<div class="btn-group pull-right">
-					<form action='/auth/rock_submit_primary' method='post'>
-					  <button type="submit" class="btn btn-default">The Rock</button>
+					<!-- <div class="btn-group pull-right">
+					<form action='/auth/primary' method='post'>
+					  <button type="submit" value="rock" class="btn btn-default">The Rock</button>
 					</form>
-					<form action='/auth/paper_submit_primary' method='post'>
-					  <button type="submit" class="btn btn-default">Papar</button>
+					<form action='/auth/primary' method='post'>
+					  <button type="submit" value="paper" class="btn btn-default">Papar</button>
 					 </form>
-					 <form action='/auth/paper_submit_primary' method='post'>
-					  <button type="submit " class="btn btn-default">Slizers</button>
+					 <form action='/auth/primary' method='post'>
+					  <button type="submit" value="scissors" class="btn btn-default">Slizers</button>
 					</form>
-					</div>
+					</div> -->
+				<%if Game.active_game?(x) %>
+					<form method="post" action="/auth/primary">
+						
+							<div class="input-group col-md-3">
+						
+						      <span class="input-group-addon">
+						        <input type="radio" name="radio" value ="rock"> The Rock
+						      </span>
+						   
+						      <span class="input-group-addon">
+						        <input type="radio" name="radio" value ="paper"> Papar
+						      </span>
+
+						      <span class="input-group-addon">
+						        <input type="radio" value ="scissors" name="radio"> Slizers
+						      </span>
+								<input type="submit" value="submit">
+						    </div>
+						</p>
+					</form>	
+				<%end%>
 				</td>
 			</tr>
 		<% end %>
@@ -39,17 +60,35 @@
 				<td><%= x.winner %></td>
 				<td></td>
 				<td>
-					<div class="btn-group pull-right">
-					<form action='/auth/rock_submit_secondary' method='post'>
-					  <button type="submit"  class="btn btn-default">The Rock</button>
+					<!-- <div class="btn-group pull-right">
+					<form action='/auth/secondary' method='post'>
+					  <button type="submit" value = "rock" class="btn btn-default">The Rock</button>
 					</form>
-					  <form action='/auth/paper_submit_secondary' method='post'>
-					  <button type="submit" class="btn btn-default">Papar</button>
+					  <form action='/auth/secondary' method='post'>
+					  <button type="submit" value = "paper" class="btn btn-default">Papar</button>
 					</form>
-					<form action='/auth/scissors_submit_secondary' method='post'>
-					  <button type="submit" class="btn btn-default">Slizers</button>
-					</form>
-					</div>
+					<form action='/auth/secondary' method='post'>
+					  <button type="submit" value = "scissors" class="btn btn-default">Slizers</button>
+					</form> -->
+					<!-- </div> -->
+					<form method="post" action="/auth/secondary">
+							<div class="input-group col-md-3">
+						
+						      <span class="input-group-addon">
+						        <input type="radio" name="radio" value ="rock"> The Rock
+						      </span>
+						   
+						      <span class="input-group-addon">
+						        <input type="radio" name="radio" value ="paper"> Papar
+						      </span>
+
+						      <span class="input-group-addon">
+						        <input type="radio" value ="scissors" name="radio"> Slizers
+						      </span>
+							<input type="submit" value="submit">
+						    </div>
+						</p>
+					</form>	
 				</td>
 			</tr>
 		<% end %>

@@ -1,8 +1,26 @@
 <div class = "container">
-	<div>
+	<div class = "row">
 		<h2>Play a Friend</h2>
 		<form method="post" action="/auth/challenge">
-			<p<input type="text" name="user_challenge" placeholder="Enter a Username"/><input type="submit" value="challenge_submit"></p>
+			<p class = "col-3">
+				<input type="text" name="user_challenge" placeholder="Enter a Username"/>
+			</p>
+				<div class="input-group col-md-3">
+			
+			      <span class="input-group-addon">
+			        <input type="radio" name="radio" value ="rock"> The Rock
+			      </span>
+			   
+			      <span class="input-group-addon">
+			        <input type="radio" name="radio" value ="paper"> Papar
+			      </span>
+
+			      <span class="input-group-addon">
+			        <input type="radio" value ="scissors" name="radio"> Slizers
+			      </span>
+			    </div>
+				<input type="submit" value="submit">
+			</p>
 		</form>	
 	</div>
 		<div>

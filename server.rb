@@ -129,14 +129,44 @@ class SinatraWardenExample < Sinatra::Base
   end
 
   get "/auth/challenge" do 
-    env['warden'].raw_session.inspect
+    env['warden'].authenticate!
     erb :challenge
   end
 
-  post "/auth/challege" do
-    @challenge_match = Match.create(user1: 4, user2: 9)
-    @challenge_game = 
+  post "/auth/challenge" do
+    env['warden'].authenticate!
+    
+    @user_2_id = User.find_id_by_name(params["user_challenge"])
+    @challenge_match = Match.create(user1: session["warden.user.default.key"], user2: @user_2_id)
+    @challenge_game = Game.create(match_id: @challenge_match.id, user1_choice: params["radio"], user2_choice: "nil")
+    erb :challenge
   end
+
+  post "/auth/primary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user1=> session["warden.user.default.key"])
+     # if 
+
+    
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "rock")
+    #this will cause bugs with multiple matches open.
+    erb :index
+
+  end
+
+  post "/auth/secondary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @matches= Match.all(:user2=> session["warden.user.default.key"])
+    
+    
+    
+    @new_game= Game.all(match_id: @newmatch.first.id, user2_choice:"rock")
+    #this will cause bugs with multiple matches open.
+    erb :index
+
+  end
+
 
   post "/auth/rock_submit_primary" do # submit button that updates sql table to reflect move
     env['warden'].authenticate!
