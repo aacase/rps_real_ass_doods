@@ -133,6 +133,11 @@ class SinatraWardenExample < Sinatra::Base
     erb :challenge
   end
 
+  post "/auth/challege" do
+    @challenge_match = Match.create(user1: 4, user2: 9)
+    @challenge_game = 
+  end
+
   post "/auth/rock_submit_primary" do # submit button that updates sql table to reflect move
     env['warden'].authenticate!
     @newmatch= Match.all(:user1=> session["warden.user.default.key"])

@@ -18,6 +18,12 @@ class User
       false
     end
   end
+
+  def self.find_id_by_name(name)
+    user = User.all(:username => name)
+    user.first.id
+  end
+
 end
 
 # user = User.get(:username => )
