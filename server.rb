@@ -139,7 +139,7 @@ class SinatraWardenExample < Sinatra::Base
     binding.pry
     #how do we get the user 2 id here?
     
-    @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "rock", user2_choice:"null for now")
+    @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "rock")
     #this will cause bugs with multiple matches open.
     erb :index
 
@@ -151,7 +151,7 @@ class SinatraWardenExample < Sinatra::Base
     binding.pry
     
     
-    @new_game= Game.create(match_id: @newmatch.first.id, user2_choice:"rock")
+    @new_game= Game.all(match_id: @newmatch.first.id, user2_choice:"rock")
     #this will cause bugs with multiple matches open.
     erb :index
 
@@ -193,13 +193,14 @@ class SinatraWardenExample < Sinatra::Base
 
   end
 
-  post "/auth/scissor_submit_secondary" do # submit button that updates sql table to reflect move
+  post "/auth/scissors_submit_secondary" do # submit button that updates sql table to reflect move
     env['warden'].authenticate!
     @newmatch= Match.all(:user2=> session["warden.user.default.key"])
     binding.pry
     
     
-    @new_game= Game.create(match_id: @newmatch.first.id, user2_choice:"scissors")
+    @new_game= Game.get(match_id: @newmatch.first.id)
+    binding.pry
     #this will cause bugs with multiple matches open.
     erb :index
 
