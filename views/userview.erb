@@ -30,7 +30,7 @@
 					  <button type="submit" value="scissors" class="btn btn-default">Slizers</button>
 					</form>
 					</div> -->
-				<%if Game.active_game?(x) != nil %>
+				<%if Game.active_game?(x) %>
 					<form method="post" action="/auth/primary">
 						
 							<div class="input-group col-md-3">
@@ -71,7 +71,6 @@
 					  <button type="submit" value = "scissors" class="btn btn-default">Slizers</button>
 					</form> -->
 					<!-- </div> -->
-				<% if Game.user1_played?(x) %>
 					<form method="post" action="/auth/secondary">
 							<div class="input-group col-md-3">
 						
@@ -90,7 +89,6 @@
 						    </div>
 						</p>
 					</form>	
-				<%end%>
 				</td>
 			</tr>
 		<% end %>
