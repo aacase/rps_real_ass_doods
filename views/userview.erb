@@ -20,9 +20,15 @@
 				<td></td>
 				<td>
 					<div class="btn-group pull-right">
-					  <button type="button" class="btn btn-default">The Rock</button>
-					  <button type="button" class="btn btn-default">Papar</button>
-					  <button type="button" class="btn btn-default">Slizers</button>
+					<form action='/auth/rock_submit_primary' method='post'>
+					  <button type="submit" class="btn btn-default">The Rock</button>
+					</form>
+					<form action='/auth/paper_submit_primary' method='post'>
+					  <button type="submit" class="btn btn-default">Papar</button>
+					 </form>
+					 <form action='/auth/paper_submit_primary' method='post'>
+					  <button type="submit" class="btn btn-default">Slizers</button>
+					</form>
 					</div>
 				</td>
 			</tr>
@@ -34,11 +40,15 @@
 				<td></td>
 				<td>
 					<div class="btn-group pull-right">
-					<form action='/auth/rock_submit_primary' method='post'>
+					<form action='/auth/rock_submit_secondary' method='post'>
 					  <button type="submit"  class="btn btn-default">The Rock</button>
 					</form>
-					  <button type="button" class="btn btn-default">Papar</button>
-					  <button type="button" class="btn btn-default">Slizers</button>
+					  <form action='/auth/paper_submit_secondary' method='post'>
+					  <button type="submit" class="btn btn-default">Papar</button>
+					</form>
+					<form action='/auth/scissors_submit_secondary' method='post'>
+					  <button type="submit" class="btn btn-default">Slizers</button>
+					</form>
 					</div>
 				</td>
 			</tr>

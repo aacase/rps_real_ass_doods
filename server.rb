@@ -140,14 +140,70 @@ class SinatraWardenExample < Sinatra::Base
     #how do we get the user 2 id here?
     
     @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "rock", user2_choice:"null for now")
-    
+    #this will cause bugs with multiple matches open.
     erb :index
 
   end
 
+  post "/auth/rock_submit_secondary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user2=> session["warden.user.default.key"])
+    binding.pry
+    
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user2_choice:"rock")
+    #this will cause bugs with multiple matches open.
+    erb :index
 
+  end
 
+  post "/auth/paper_submit_primary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user1=> session["warden.user.default.key"])
+    binding.pry
+    #how do we get the user 2 id here?
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "paper", user2_choice:"null for now")
+    #this will cause bugs with multiple matches open.
+    erb :index
 
+  end
+
+  post "/auth/paper_submit_secondary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user2=> session["warden.user.default.key"])
+    binding.pry
+    
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user2_choice:"paper")
+    #this will cause bugs with multiple matches open.
+    erb :index
+
+  end
+
+  post "/auth/scissors_submit_primary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user1=> session["warden.user.default.key"])
+    binding.pry
+    #how do we get the user 2 id here?
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user1_choice: "scissors", user2_choice:"null for now")
+    #this will cause bugs with multiple matches open.
+    erb :index
+
+  end
+
+  post "/auth/scissor_submit_secondary" do # submit button that updates sql table to reflect move
+    env['warden'].authenticate!
+    @newmatch= Match.all(:user2=> session["warden.user.default.key"])
+    binding.pry
+    
+    
+    @new_game= Game.create(match_id: @newmatch.first.id, user2_choice:"scissors")
+    #this will cause bugs with multiple matches open.
+    erb :index
+
+  end
 
 
 
