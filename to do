@@ -1,0 +1,13 @@
+when 3 games are won by the same user, match table has winner column populated with 1, marking it as complete.
+
+no more games can be played at that point. DONE
+
+History Query all matches that are won by user id. Call name on user id
+
+
+# game = Game.all(match_id: match.last.id).last    
+    # if game.user1_choice == nil && game.user2_choice == nil
+    #   game.update(user1_choice: params["radio"])
+    # else
+    #   Game.create(match_id: match.last.id, user1_choice: params["radio"], user2_choice: nil)
+    # end

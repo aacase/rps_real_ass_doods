@@ -121,13 +121,7 @@ class SinatraWardenExample < Sinatra::Base
     redirect '/auth/login'
   end
 
-  get '/protected' do
-    env['warden'].authenticate!
-
-
-    erb :protected
-  end
-
+ 
   get "/auth/challenge" do 
     env['warden'].authenticate!
     erb :challenge
@@ -147,28 +141,36 @@ class SinatraWardenExample < Sinatra::Base
     match= Match.all(:user1=> session["warden.user.default.key"])
     #if latest game is over    
     
-    game= Game.create(match_id: match.first.id, user1_choice: params["radio"], user2_choice: nil)
-    #this will cause bugs with multiple matches open.
-    erb :index
+    # game= Game.create(match_id: match.last.id, user1_choice: params["radio"], user2_choice: nil)
+    # #this will cause bugs with multiple matches open.
+    game = Game.all(match_id: match.last.id).last    
+        if game.user1_choice == nil && game.user2_choice == nil
+          game.update(user1_choice: params["radio"])
+        else
+          Game.create(match_id: match.last.id, user1_choice: params["radio"], user2_choice: nil)
+        end
+    redirect "/userview/#{session["warden.user.default.key"]}"
 
   end
 
   post "/auth/secondary" do # submit button that updates sql table to reflect move
     env['warden'].authenticate!
-    match= Match.all(:user2=> session["warden.user.default.key"])
+    matches= Match.all(:user2=> session["warden.user.default.key"])
     
     
     
-    game= Game.all(match_id: match.first.id)
+    game= Game.all(match_id: matches.last.id)
     game.update(:user2_choice => params["radio"])
     #this will cause bugs with multiple matches open.
-    Game.declare_winner(match)
-    new_game = Match.declare_winner(match)
+    # binding.pry
+    Game.declare_winner(matches.last)
+    new_game = Match.declare_winner(matches.last)
+    # binding.pry
     if new_game.nil?
-      Game.create(match_id: match.first.id)
+      Game.create(match_id: matches.last.id)
     end
 
-    erb :index
+    redirect "/userview/#{session["warden.user.default.key"]}"
 
   end
 

@@ -34,7 +34,10 @@ class Match
   property :id, Serial, key:true 
   property :user1, Integer
   property :user2, Integer
+  property :winner_id, Integer
   property :winner, String, length: 20
+  property :user1_wins, Integer
+  property :user2_wins, Integer
   # property :pending, Boolean :default => true
 
   # def self.deny(match)
@@ -51,12 +54,14 @@ class Match
     #game.all(matchid AND user1)
     if match.user1_wins >= 3
       @winner=match.user1
+      match.update(:winner_id => @winner, :winner => "1")
     elsif match.user2_wins >= 3
       @winner=match.user2
+      match.update(:winner_id => @winner, :winner => "1")
     else
       nil
     end
-    match.update(:winner_id => @winner, :winner => "1")
+    
     # @match=Match.get(:match_id= match)
     # @win1  = Match.all(:user1_wins => "3")
     # @win2 = Match.all(:user2_wins => "3")
@@ -81,13 +86,16 @@ class Game
   property :match_id, Integer
   property :user1_choice, String, length: 20
   property :user2_choice, String, length: 20
+  property :winner, Integer
   
   def self.find_games(match_id)
     Game.all(:match_id => match_id)
   end
 
   def self.active_game?(match)
+    # binding.pry
     games = Game.all(:match_id => match.id)
+    # last=games.last
     if games.last.user2_choice == nil
       games.last
     else
@@ -105,9 +113,9 @@ class Game
   end
 
   def self.beats(p1_move, p2_move)
-    beats={"scissors" => "paper",
-            "paper" => "rock",
-            "rock" => "scissors"}
+    beats={"scissors" => "rock",
+            "paper" => "scissors",
+            "rock" => "paper"}
 
 
     if p1_move== beats[p2_move]
@@ -120,19 +128,21 @@ class Game
   end
 
   def self.declare_winner(match)
-    game = Game.active_game?(match)
+    # conti
+    game = Game.all(:match_id => match.id).last
+    # binding.pry
     p1_move = game.user1_choice
     p2_move = game.user2_choice
     winner = Game.beats(p1_move, p2_move)
 
     if winner == "p1"
       game.update(:winner => match.user1)
-      user1_wins = match.get(:user1_wins).to_i + 1
-      match.update(:user1_wins => user1_wins.to_s)
+      user1_wins = Match.get(match.id).user1_wins + 1
+      match.update(:user1_wins => user1_wins)
     elsif winner == "p2"
       game.update(:winner => match.user2)
-      user2_wins = match.get(:user2_wins).to_i + 1
-      match.update(:user2_wins => user2_wins.to_s)
+      user2_wins = Match.get(match.id).user2_wins + 1
+      match.update(:user2_wins => user2_wins)
     else
       match.update(:user1_choice => nil, :user2_choice => nil)
     end
