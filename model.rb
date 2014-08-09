@@ -96,7 +96,7 @@ class Game
     # binding.pry
     games = Game.all(:match_id => match.id)
     # last=games.last
-    if games.last.user2_choice == nil
+    if games.last.user2_choice == nil && games.last.user1_choice== nil
       games.last
     else
       nil
