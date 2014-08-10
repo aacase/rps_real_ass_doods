@@ -73,6 +73,23 @@ class Match
 
   end
 
+  # def self.primary_match_history(match)
+  #   mh = Game.all(:match_id => match.id)
+    
+  #   @stuff="no previous moves"
+
+
+  #     if mh.count == 1
+  #       @stuff
+  #     elsif mh.count ==2
+  #        @stuff="1. #{mh[-2].user1_choice}"
+  #     else
+  #        @stuff= "1.#{mh[-2].user1_choice}  2.#{mh[-3].user1_choice}"
+         
+  #     end
+  #     # binding.pry
+  # end
+
   # def self.update_user_wins(match)
   #   match.
   # end
@@ -130,7 +147,7 @@ class Game
   def self.declare_winner(match)
     # conti
     game = Game.all(:match_id => match.id).last
-    # binding.pry
+    
     p1_move = game.user1_choice
     p2_move = game.user2_choice
     winner = Game.beats(p1_move, p2_move)
@@ -144,10 +161,13 @@ class Game
       user2_wins = Match.get(match.id).user2_wins + 1
       match.update(:user2_wins => user2_wins)
     else
-      match.update(:user1_choice => nil, :user2_choice => nil)
+      game.destroy
     end
 
   end
+
+
+        
 
 end
 
