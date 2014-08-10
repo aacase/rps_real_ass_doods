@@ -94,7 +94,7 @@ class SinatraWardenExample < Sinatra::Base
     env['warden'].logout
     
     flash[:success] = 'Successfully logged out'
-    # redirect '/'
+    redirect '/'
   end
 
   get '/userview/:id' do
@@ -133,7 +133,21 @@ class SinatraWardenExample < Sinatra::Base
     @user_2_id = User.find_id_by_name(params["user_challenge"])
     @challenge_match = Match.create(user1: session["warden.user.default.key"], user2: @user_2_id)
     @challenge_game = Game.create(match_id: @challenge_match.id, user1_choice: params["radio"], user2_choice: "nil")
-    erb :challenge
+    redirect "/userview/#{session["warden.user.default.key"]}"
+  end
+
+  post "/auth/randomchallenge" do
+    env['warden'].authenticate!
+    
+    @user_2_id = User.all.sort_by{rand}
+    binding.pry
+    if @user_2_id.first.id == session["warden.user.default.key"]
+    @challenge_match = Match.create(user1: session["warden.user.default.key"], user2: @user_2_id.last.id)
+    else
+    @challenge_match = Match.create(user1: session["warden.user.default.key"], user2: @user_2_id.first.id)
+    end
+    @challenge_game = Game.create(match_id: @challenge_match.id, user1_choice: params["radio"], user2_choice: "nil")
+    redirect "/userview/#{session["warden.user.default.key"]}"
   end
 
   post "/auth/primary" do # submit button that updates sql table to reflect move

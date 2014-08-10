@@ -23,15 +23,32 @@
 			</p>
 		</form>	
 	</div>
+	<div class="row">
+	<h2>Play a Rando (stranger danger)</h2>
 		<div>
-			<h2>Play a Rando</h2>
-			<form><button type="challenge" class="btn btn-default">GO!</button> </form>
-		</div>
+			<form method="post" action="/auth/randomchallenge">
+			
+				<div class="input-group col-md-3">
+			
+			      <span class="input-group-addon">
+			        <input type="radio" name="radio" value ="rock"> The Rock
+			      </span>
+			   
+			      <span class="input-group-addon">
+			        <input type="radio" name="radio" value ="paper"> Papar
+			      </span>
 
-	<div>
-		<h2>Active strangers to challenge</h2>
-		<p> Add table here of atleast 5 players that have played before.</p>
+			      <span class="input-group-addon">
+			        <input type="radio" value ="scissors" name="radio"> Slizers
+			      </span>
+			    </div>
+				<input type="submit" value="submit">
+			</p>
+		</form>	
+		</div>
 	</div>
+
+	
 
 </div>
 
