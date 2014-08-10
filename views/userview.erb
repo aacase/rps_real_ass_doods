@@ -16,7 +16,7 @@
 		<% @active_matches.each do |x| %>
 			<tr>
 				<td><%= User.get(x.user2).username.capitalize %></td>
-				<td><%= x.winner %></td>
+				<td><%= Match.primary_match_history(x) %></td>
 				<td></td>
 				<td>
 					<!-- <div class="btn-group pull-right">
@@ -57,7 +57,7 @@
 		<% @active_matches2.each do |x| %>
 			<tr>
 				<td><%= User.get(x.user1).username.capitalize %></td>
-				<td><%= x.winner %></td>
+				<td><%= Match.primary_match_history(x)  %></td>
 				<td></td>
 				<td>
 					<!-- <div class="btn-group pull-right">

@@ -73,22 +73,25 @@ class Match
 
   end
 
-  # def self.primary_match_history(match)
-  #   mh = Game.all(:match_id => match.id)
+  def self.primary_match_history(match)
+    mh = Game.all(:match_id => match.id)
     
-  #   @stuff="no previous moves"
+    @stuff="no previous moves"
 
 
-  #     if mh.count == 1
-  #       @stuff
-  #     elsif mh.count ==2
-  #        @stuff="1. #{mh[-2].user1_choice}"
-  #     else
-  #        @stuff= "1.#{mh[-2].user1_choice}  2.#{mh[-3].user1_choice}"
+      if mh.count == 1
+        @stuff
+      elsif mh.count ==2
+         @stuff="1. #{mh[-2].user1_choice} vs #{mh[-2].user2_choice}"
+      else
+
+         @stuff= mh.each_with_index do |item, index|
+            "#{mh[index].user1_choice} vs #{mh[index].user2_choice}"
+          end
          
-  #     end
-  #     # binding.pry
-  # end
+      @stuff.select {|g| g.user1_choice && g.user2_choice }.map { |g| "#{g.user1_choice} vs #{g.user2_choice}" }
+      end
+  end
 
   # def self.update_user_wins(match)
   #   match.
