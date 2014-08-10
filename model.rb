@@ -81,8 +81,6 @@ class Match
 
       if mh.count == 1
         @stuff
-      elsif mh.count ==2
-         @stuff="1. #{mh[-2].user1_choice} vs #{mh[-2].user2_choice}"
       else
 
          @stuff= mh.each_with_index do |item, index|
