@@ -87,7 +87,7 @@ class Match
             "#{mh[index].user1_choice} vs #{mh[index].user2_choice}"
           end
          
-      @stuff.select {|g| g.user1_choice && g.user2_choice }.map { |g| "#{g.user1_choice} vs #{g.user2_choice}" }
+      @stuff.select {|g| g.user1_choice && g.user2_choice }.map { |g| "1: #{g.user1_choice} vs 2: #{g.user2_choice}" }
       end
   end
 
