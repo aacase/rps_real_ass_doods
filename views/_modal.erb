@@ -4,26 +4,25 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">To sign up or not to sign up, that is the question.</h4>
       </div>
       <div class="modal-body">
         <div class="row-fluid">    
             
-          <div class="span6">
+          <div>
            <form action='/signup' method='post'>
-              <div>
-                
+              <div class = "col-md-12">   
               <input type="text" class="userid" name="username" placeholder='username'/>
                </div>
-               <div>            
-                 <input type="password"  placeholder='password'class="password" name="password" />
-               </div>
-               <div>             
+               <br>
+               <div class = "col-md-12">            
+                 <input type="password"  placeholder='password'class="password" name="password" />            
                  <input type="password" class="confpass"name="confpass" placeholder='confirm password' />
                </div>
+               <br>
                <input id="submit" type="submit" value="Submit">
            </form>
-      </div>
+        </div>
       </div>
   </div>
 </div>
