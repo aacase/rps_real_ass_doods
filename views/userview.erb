@@ -10,15 +10,15 @@
 		<tr>
 			<th>Opponent Name</th>
 			<th>Choice History</th>
-			<th>Games Won</th>
-			<th class ="pull-right" style ="padding-right: 50px;">Actions</th>
+			<th>Move Picker</th>
+			<th class ="pull-right" style ="padding-right: 50px;">Win Count</th>
 		</tr>	
 		<% @active_matches.each do |x| %>
 			<tr>
 				<td><%= User.get(x.user2).username.capitalize %></td>
 				<td><%= Match.primary_match_history(x) %></td>
-				<td></td>
 				<td>
+				
 					<!-- <div class="btn-group pull-right">
 					<form action='/auth/primary' method='post'>
 					  <button type="submit" value="rock" class="btn btn-default">The Rock</button>
@@ -90,6 +90,7 @@
 						    </div>
 						</p>
 					</form>	
+					<td><%=x.user1_wins%></td>
 				<%end%>
 				</td>
 			</tr>
@@ -102,21 +103,21 @@
 	<table class ="table">
 		<tr>
 			<th>Opponent Name</th>
-			<th>History</th>
+			<th>Winner</th>
 			
 		</tr>
 		<% @completed_matches.each do |x| %>
 			<tr>
 				<td><%= User.get(x.user2).username.capitalize %></td>
-				<td><%= x.winner %></td>
+				<td><%= User.get(x.winner_id).username.capitalize %></td>
 				<td></td>
 				
 			</tr>
 		<% end %>
 		<% @completed_matches2.each do |x| %>
 			<tr>
-				<td><%= User.get(x.user2).username.capitalize %></td>
-				<td><%= x.winner %></td>
+				<td><%= User.get(x.user1).username.capitalize %></td>
+				<td><%= User.get(x.winner_id).username.capitalize %></td>
 				<td></td>
 				
 			</tr>
