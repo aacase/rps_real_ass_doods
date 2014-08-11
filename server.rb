@@ -140,7 +140,7 @@ class SinatraWardenExample < Sinatra::Base
     env['warden'].authenticate!
     
     @user_2_id = User.all.sort_by{rand}
-    binding.pry
+    
     if @user_2_id.first.id == session["warden.user.default.key"]
     @challenge_match = Match.create(user1: session["warden.user.default.key"], user2: @user_2_id.last.id)
     else
